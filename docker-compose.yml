@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  hok-env:
+    image: cpu_dev:latest
+    container_name: hok-env
+    tty: true
+    stdin_open: true
+    ports:
+      - "35000-35400:35000-35400"
+    volumes:
+      - ./aiarena:/aiarena
+      - ./hok_env:/hok_env
+      - ./rl_framework:/rl_framework
+    environment:
+      - GAMECORE_SERVER_ADDR=host.docker.internal:23432
+      - NO_MODEL_POOL=1
+    command: bash
